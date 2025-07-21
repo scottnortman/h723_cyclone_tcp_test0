@@ -1,0 +1,15 @@
+# STM32CubeIDE / Eclipse
+.project
+.cproject
+.settings/
+Debug/
+Release/
+# Makefile builds
+build/
+*.o
+*.elf
+*.map
+*.hex
+# OS-specific
+.vs/
+*.log
