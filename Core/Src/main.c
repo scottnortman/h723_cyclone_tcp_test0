@@ -40,6 +40,8 @@
 #include "CommandConsoleTask.h"
 #include "Sample-CLI-commands.h"
 
+#include "CommandConsoleDualTask.h"
+
 #include "core/net.h"
 #include "drivers/mac/stm32h7xx_eth_driver.h"
 #include "drivers/phy/lan8742_driver.h"
@@ -601,7 +603,12 @@ int main(void)
   xTelnetTaskStart( tskIDLE_PRIORITY+1 );
 
   //vCommandConsoleInit(xSerialTaskGetRxStreamHandle(), xSerialTaskGetTxStreamHandle(), 0, 0);
-  vCommandConsoleInit(xTelnetTaskGetRxStreamHandle(), xTelnetTaskGetTxStreamHandle(), 0, 0);
+  //vCommandConsoleInit(xTelnetTaskGetRxStreamHandle(), xTelnetTaskGetTxStreamHandle(), 0, 0);
+
+  vCommandConsoleDualInit(	xSerialTaskGetRxStreamHandle(),
+		  	  	  	  	  	xSerialTaskGetTxStreamHandle(),
+							xTelnetTaskGetRxStreamHandle(),
+							xTelnetTaskGetTxStreamHandle() );
 
 
   vRegisterSampleCLICommands();
