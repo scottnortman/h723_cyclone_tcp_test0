@@ -1,3 +1,16 @@
+# Include specs but exclude IDE settings
+.kiro/settings/
+.kiro/workspace/
+.kiro/cache/
+
+# But keep specs
+!.kiro/specs/
+
+# IDE-specific (other than Kiro specs)
+.vscode/
+.idea/
+*.code-workspace
+
 # STM32CubeIDE / Eclipse
 .project
 .cproject
