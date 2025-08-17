@@ -1,0 +1,27 @@
+# Makefile for UAVCAN Message Handler Tests
+# Usage: make -f Makefile.test
+
+CC = arm-none-eabi-gcc
+CFLAGS = -DUAVCAN_MESSAGE_HANDLER_TEST_STANDALONE -I../../Inc -I../../../Middlewares/Third_Party/Oryx-Embedded_CycloneCommon_CycloneCommon/common -Wall -Wextra -std=c99
+
+# Fallback to regular gcc if ARM compiler not available
+ifeq ($(shell which $(CC) 2>/dev/null),)
+    CC = gcc
+    CFLAGS += -DTEST_FALLBACK
+endif
+
+TARGET = test_message_handler
+SOURCES = uavcan_message_handler.c uavcan_message_handler_test.c uavcan_message_libudpard_integration.c
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
+
+test: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(TARGET)
+
+.PHONY: all test clean

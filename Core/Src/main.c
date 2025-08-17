@@ -54,6 +54,8 @@
 
 #include "udpard.h"
 
+// UAVCAN Integration
+#include "uavcan/uavcan_integration.h"
 
 /* USER CODE END Includes */
 
@@ -114,6 +116,9 @@ MdnsResponderSettings mdnsResponderSettings;
 MdnsResponderContext mdnsResponderContext;
 HttpClientContext httpClientContext;
 
+// UAVCAN Integration Context
+UavcanIntegrationContext uavcanContext;
+
 //static xComPortHandle comPortHandle = NULL;
 
 
@@ -153,18 +158,60 @@ uint64_t xTaskGetTickCount64(void){
 
 void userTask(void *param)
 {
+   static uint8_t test_phase = 0;
+   
    //Endless loop
    while(1)
    {
       //User button pressed?
       if(BSP_PB_GetState(BUTTON_USER))
       {
-         //HTTP client test routine
-         httpClientTest();
+         switch(test_phase) {
+            case 0:
+               // Run UAVCAN integration test on first button press
+               TRACE_INFO("Running UAVCAN integration test...\r\n");
+               if (uavcanSystemIntegrationTest(&netInterface[0])) {
+                  TRACE_INFO("UAVCAN integration test PASSED\r\n");
+               } else {
+                  TRACE_INFO("UAVCAN integration test FAILED\r\n");
+               }
+               test_phase = 1;
+               break;
+               
+            case 1:
+               // Run comprehensive test suite on second button press
+               TRACE_INFO("Running UAVCAN comprehensive test suite...\r\n");
+               if (uavcanRunComprehensiveTests()) {
+                  TRACE_INFO("UAVCAN comprehensive tests PASSED\r\n");
+               } else {
+                  TRACE_INFO("UAVCAN comprehensive tests FAILED\r\n");
+               }
+               test_phase = 2;
+               break;
+               
+            case 2:
+               // Run complete validation suite on third button press
+               TRACE_INFO("Running UAVCAN complete validation suite...\r\n");
+               if (uavcanRunCompleteValidation(&uavcanContext)) {
+                  TRACE_INFO("UAVCAN complete validation PASSED\r\n");
+               } else {
+                  TRACE_INFO("UAVCAN complete validation FAILED\r\n");
+               }
+               test_phase = 3;
+               break;
+               
+            default:
+               // HTTP client test routine for subsequent presses
+               httpClientTest();
+               break;
+         }
 
          //Wait for the user button to be released
          while(BSP_PB_GetState(BUTTON_USER));
       }
+
+      // Update UAVCAN subsystem
+      uavcanIntegrationUpdate(&uavcanContext);
 
       //Loop delay
       osDelayTask(100);
@@ -316,6 +363,31 @@ void initTask(void)
    error = icmpEnableEchoRequests(interface, TRUE);
    configASSERT(NO_ERROR==error);
    TRACE_INFO("Enabled ICMP requests...\r\n");
+
+   // Initialize UAVCAN subsystem
+   TRACE_INFO("Initializing UAVCAN subsystem...\r\n");
+   UavcanError uavcan_error = uavcanIntegrationInit(&uavcanContext, interface, 0);  // 0 = dynamic node ID
+   if (uavcan_error != UAVCAN_ERROR_NONE) {
+      TRACE_ERROR("Failed to initialize UAVCAN subsystem: %d\r\n", uavcan_error);
+   } else {
+      TRACE_INFO("UAVCAN subsystem initialized successfully\r\n");
+      
+      // Register UAVCAN CLI commands
+      uavcan_error = uavcanIntegrationRegisterCommands(&uavcanContext);
+      if (uavcan_error != UAVCAN_ERROR_NONE) {
+         TRACE_ERROR("Failed to register UAVCAN CLI commands: %d\r\n", uavcan_error);
+      } else {
+         TRACE_INFO("UAVCAN CLI commands registered\r\n");
+      }
+      
+      // Start UAVCAN subsystem
+      uavcan_error = uavcanIntegrationStart(&uavcanContext);
+      if (uavcan_error != UAVCAN_ERROR_NONE) {
+         TRACE_ERROR("Failed to start UAVCAN subsystem: %d\r\n", uavcan_error);
+      } else {
+         TRACE_INFO("UAVCAN subsystem started successfully\r\n");
+      }
+   }
 
 } // initTask
 
