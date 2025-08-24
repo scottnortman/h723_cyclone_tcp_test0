@@ -1,4 +1,24 @@
 {
   "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-  "cmake.configureOnOpen": true
+  "cmake.configureOnOpen": true,
+  "cmake.buildBeforeRun": true,
+  "cmake.saveBeforeBuild": true,
+  "cmake.generator": "Ninja",
+  "cmake.preferredGenerators": ["Ninja", "Unix Makefiles"],
+  "cmake.configureSettings": {
+    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+  },
+  "stm32-for-vscode.openOCDPath": false,
+  "files.associations": {
+    "*.h": "c",
+    "*.c": "c",
+    "*.s": "arm",
+    "*.ld": "linkerscript"
+  },
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.autocomplete": "default",
+  "editor.formatOnSave": false,
+  "cmake.showSystemKits": false,
+  "cmake.configureOnEdit": false
 }

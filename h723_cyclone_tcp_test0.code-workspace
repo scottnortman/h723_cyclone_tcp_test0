@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "cmake.configureOnOpen": true,
+    "cmake.buildBeforeRun": true,
+    "cmake.saveBeforeBuild": true,
+    "cmake.generator": "Ninja",
+    "cmake.preferredGenerators": ["Ninja", "Unix Makefiles"],
+    "cmake.configureSettings": {
+      "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.intelliSenseEngine": "default",
+    "files.associations": {
+      "*.h": "c",
+      "*.c": "c",
+      "*.s": "arm",
+      "*.ld": "linkerscript"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.cmake-tools",
+      "ms-vscode.cpptools",
+      "ms-vscode.vscode-embedded-tools",
+      "ms-vscode.hexeditor",
+      "marus25.cortex-debug",
+      "dan-c-underwood.arm"
+    ]
+  }
+}

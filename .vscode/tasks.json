@@ -2,14 +2,47 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build",
+      "label": "CMake: Configure",
+      "type": "cmake",
+      "command": "configure",
+      "preset": "debug",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "CMake: Build Debug",
       "type": "cmake",
       "command": "build",
-      "problemMatcher": "$gcc",
+      "preset": "debug",
+      "problemMatcher": ["$gcc"],
       "group": {
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "CMake: Build Release",
+      "type": "cmake",
+      "command": "build",
+      "preset": "release",
+      "problemMatcher": ["$gcc"],
+      "group": "build"
+    },
+    {
+      "label": "CMake: Clean",
+      "type": "cmake",
+      "command": "clean",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Build and Flash",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "CMake: Build Debug"
+      ],
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }

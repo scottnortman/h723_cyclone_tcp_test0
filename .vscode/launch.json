@@ -22,7 +22,7 @@
       "logging": {
         "engineLogging": true
       },
-      "preLaunchTask": "Build",
+      "preLaunchTask": "CMake: Build Debug",
       "svdPath": "${command:vscode-embedded.st.svd}/STM32H723.svd"
     }
   ]
