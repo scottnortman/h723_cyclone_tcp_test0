@@ -1,0 +1,218 @@
+/**
+ * @file cyclone_tcp_stubs.c
+ * @brief Stub implementations for CycloneTCP functions to enable linking
+ * 
+ * This file provides minimal stub implementations for CycloneTCP functions
+ * that are referenced in main.c but may not be fully linked yet.
+ * These stubs allow the project to compile and link successfully.
+ */
+
+// Include only essential headers to avoid conflicts
+#include "error.h"
+
+// Simple stub implementations - no structure definitions to avoid conflicts
+// These will be replaced when the full CycloneTCP library is linked
+
+// Stub function implementations
+error_t netInit(void) {
+    return NO_ERROR;
+}
+
+error_t netSetInterfaceName(void *interface, const char *name) {
+    (void)interface;
+    (void)name;
+    return NO_ERROR;
+}
+
+error_t netSetHostname(void *interface, const char *name) {
+    (void)interface;
+    (void)name;
+    return NO_ERROR;
+}
+
+error_t macStringToAddr(const char *str, void *addr) {
+    (void)str;
+    (void)addr;
+    return NO_ERROR;
+}
+
+error_t netSetMacAddr(void *interface, const void *macAddr) {
+    (void)interface;
+    (void)macAddr;
+    return NO_ERROR;
+}
+
+error_t netSetDriver(void *interface, const void *driver) {
+    (void)interface;
+    (void)driver;
+    return NO_ERROR;
+}
+
+error_t netSetPhyDriver(void *interface, const void *driver) {
+    (void)interface;
+    (void)driver;
+    return NO_ERROR;
+}
+
+error_t netConfigInterface(void *interface) {
+    (void)interface;
+    return NO_ERROR;
+}
+
+error_t ipv4StringToAddr(const char *str, void *addr) {
+    (void)str;
+    (void)addr;
+    return NO_ERROR;
+}
+
+error_t ipv4SetHostAddr(void *interface, unsigned int addr) {
+    (void)interface;
+    (void)addr;
+    return NO_ERROR;
+}
+
+error_t ipv4SetSubnetMask(void *interface, unsigned int mask) {
+    (void)interface;
+    (void)mask;
+    return NO_ERROR;
+}
+
+error_t ipv4SetDefaultGateway(void *interface, unsigned int addr) {
+    (void)interface;
+    (void)addr;
+    return NO_ERROR;
+}
+
+error_t ipv4SetDnsServer(void *interface, unsigned int index, unsigned int addr) {
+    (void)interface;
+    (void)index;
+    (void)addr;
+    return NO_ERROR;
+}
+
+void mdnsResponderGetDefaultSettings(void *settings) {
+    (void)settings;
+}
+
+error_t mdnsResponderInit(void *context, const void *settings) {
+    (void)context;
+    (void)settings;
+    return NO_ERROR;
+}
+
+error_t mdnsResponderSetHostname(void *context, const char *hostname) {
+    (void)context;
+    (void)hostname;
+    return NO_ERROR;
+}
+
+error_t mdnsResponderStart(void *context) {
+    (void)context;
+    return NO_ERROR;
+}
+
+error_t icmpEnableEchoRequests(void *interface, unsigned char enable) {
+    (void)interface;
+    (void)enable;
+    return NO_ERROR;
+}
+
+// OS abstraction layer stubs - use simple implementations
+void osSuspendAllTasks(void) {
+    // Stub implementation
+}
+
+void osResumeAllTasks(void) {
+    // Stub implementation  
+}
+
+void osDelayTask(unsigned long delay) {
+    (void)delay;
+    // Stub implementation
+}
+
+void *osCreateTask(const char *name, void *taskCode, void *arg, const void *params) {
+    (void)name;
+    (void)taskCode;
+    (void)arg;
+    (void)params;
+    return (void*)0;
+}
+
+error_t osKernelStart(void) {
+    return NO_ERROR;
+}
+
+// Socket API stubs
+void *socketOpen(unsigned int type, unsigned int protocol) {
+    (void)type;
+    (void)protocol;
+    return (void*)0;
+}
+
+error_t socketBind(void *socket, const void *localIpAddr, unsigned short localPort) {
+    (void)socket;
+    (void)localIpAddr;
+    (void)localPort;
+    return NO_ERROR;
+}
+
+error_t socketListen(void *socket, unsigned int backlog) {
+    (void)socket;
+    (void)backlog;
+    return NO_ERROR;
+}
+
+void *socketAccept(void *socket, void *clientIpAddr, unsigned short *clientPort) {
+    (void)socket;
+    (void)clientIpAddr;
+    (void)clientPort;
+    return (void*)0;
+}
+
+error_t socketReceive(void *socket, void *data, unsigned int size, unsigned int *received, unsigned int flags) {
+    (void)socket;
+    (void)data;
+    (void)size;
+    (void)received;
+    (void)flags;
+    return NO_ERROR;
+}
+
+error_t socketSend(void *socket, const void *data, unsigned int length, unsigned int *written, unsigned int flags) {
+    (void)socket;
+    (void)data;
+    (void)length;
+    (void)written;
+    (void)flags;
+    return NO_ERROR;
+}
+
+void socketClose(void *socket) {
+    (void)socket;
+}
+
+// UAVCAN integration stubs
+error_t uavcanIntegrationInit(void *ctx, void *netIf, unsigned char nodeId) {
+    (void)ctx;
+    (void)netIf;
+    (void)nodeId;
+    return NO_ERROR;
+}
+
+error_t uavcanIntegrationStart(void *ctx) {
+    (void)ctx;
+    return NO_ERROR;
+}
+
+error_t uavcanIntegrationRegisterCommands(void *ctx) {
+    (void)ctx;
+    return NO_ERROR;
+}
+
+// Global variables that may be referenced
+char netContext[1024];  // Simple placeholder
+char stm32h7xxEthDriver[256];  // Simple placeholder
+char lan8742PhyDriver[256];    // Simple placeholder
+char IP_ADDR_ANY[16];          // Simple placeholder
+char OS_TASK_DEFAULT_PARAMS[64]; // Simple placeholder
