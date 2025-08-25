@@ -32,6 +32,7 @@
 ******************************************************************************/
 
 #include "Sample-CLI-commands.h"
+#include "uavcan/uavcan_cli.h"
 
 #include "stm32h7xx_nucleo.h"
 
@@ -194,6 +195,9 @@ void vRegisterSampleCLICommands( void )
         FreeRTOS_CLIRegisterCommand( &xStartStopTrace );
     }
     #endif
+    
+    // Register UAVCAN CLI commands
+    uavcanCliRegisterCommands();
 }
 /*-----------------------------------------------------------*/
 
