@@ -19,7 +19,7 @@
 
 #define TELNET_PORT              23
 #define TELNET_TASK_STACK_SIZE   512
-#define CLI_BUFFER_SIZE          128
+#define CLI_BUFFER_SIZE          512  /* Increased to match CLI output buffer size */
 
 // Telnet IAC command and option codes
 #define TELNET_IAC               255u
@@ -140,7 +140,8 @@ static void prvTelnetTask(void *pvParameters)
              */
             xStreamBufferSend(xRxStream, inBuf, received, portMAX_DELAY);
 
-            vTaskDelay(10);
+            // Give CLI time to process command
+            vTaskDelay(pdMS_TO_TICKS(50));
 
             // b) Drain console output (which includes console-driven echo) back to socket
             size_t avail = xStreamBufferBytesAvailable(xTxStream);
@@ -157,6 +158,9 @@ static void prvTelnetTask(void *pvParameters)
                         break;
                     }
                 }
+                
+                // Check for more data after a brief delay
+                vTaskDelay(pdMS_TO_TICKS(10));
                 avail = xStreamBufferBytesAvailable(xTxStream);
             }
         }

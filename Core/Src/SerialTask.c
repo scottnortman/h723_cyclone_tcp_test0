@@ -47,7 +47,7 @@ void vSerialTaskInit(UBaseType_t xTxPriority, UBaseType_t xRxPriority)
     ret = xTaskCreate(
         vSerialRxTask,
         "SerialRx",
-        configMINIMAL_STACK_SIZE,
+        512,  /* Increased from configMINIMAL_STACK_SIZE (128) */
         NULL,
         xRxPriority,
         NULL);
@@ -56,7 +56,7 @@ void vSerialTaskInit(UBaseType_t xTxPriority, UBaseType_t xRxPriority)
     ret = xTaskCreate(
         vSerialTxTask,
         "SerialTx",
-        configMINIMAL_STACK_SIZE,
+        512,  /* Increased from configMINIMAL_STACK_SIZE (128) */
         NULL,
         xTxPriority,
         NULL);

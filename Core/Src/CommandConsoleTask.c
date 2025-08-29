@@ -42,6 +42,9 @@ static void prvCommandConsoleTask( void * pvParameters )
                     /* Process and send all CLI output */
                     do
                     {
+                        /* Clear output buffer before processing */
+                        memset(pcOutput, 0, CMD_OUTPUT_BUFFER_LENGTH);
+                        
                         xMore = FreeRTOS_CLIProcessCommand( pcInput,  pcOutput, CMD_OUTPUT_BUFFER_LENGTH );
 
                         if( strlen(pcOutput) > 0 ){

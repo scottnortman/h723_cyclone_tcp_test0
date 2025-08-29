@@ -18,3 +18,9 @@ target_sources(${PROJECT_NAME} PRIVATE
     "Core/Src/uavcan/uavcan_cli.c"
     "Core/Src/uavcan/uavcan.c"
 )
+
+# Add stack monitoring and FreeRTOS hooks
+target_sources(${PROJECT_NAME} PRIVATE
+    "Core/Src/stack_monitor_cli.c"
+    "Core/Src/freertos_hooks.c"
+)

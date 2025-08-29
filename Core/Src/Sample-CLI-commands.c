@@ -33,6 +33,7 @@
 
 #include "Sample-CLI-commands.h"
 #include "uavcan/uavcan_cli.h"
+#include "stack_monitor_cli.h"
 
 #include "stm32h7xx_nucleo.h"
 
@@ -173,7 +174,7 @@ static const CLI_Command_Definition_t xParameterEcho =
 void vRegisterSampleCLICommands( void )
 {
     /* Register all the command line commands defined immediately above. */
-    //FreeRTOS_CLIRegisterCommand( &xTaskStats );
+    FreeRTOS_CLIRegisterCommand( &xTaskStats );
     //FreeRTOS_CLIRegisterCommand( &xThreeParameterEcho );
     FreeRTOS_CLIRegisterCommand( &xParameterEcho );
     FreeRTOS_CLIRegisterCommand( &xLEDYellowToggle );
@@ -198,6 +199,9 @@ void vRegisterSampleCLICommands( void )
     
     // Register UAVCAN CLI commands
     uavcanCliRegisterCommands();
+    
+    // Register stack monitoring CLI commands
+    vRegisterStackMonitorCLICommands();
 }
 /*-----------------------------------------------------------*/
 

@@ -18,11 +18,11 @@
 #include "FreeRTOS_CLI.h"
 
 /* Default task config */
-#define COMMAND_CONSOLE_DUAL_TASK_STACK_SIZE	256
+#define COMMAND_CONSOLE_DUAL_TASK_STACK_SIZE	1024  /* Increased from 256 to handle CLI commands */
 #define COMMAND_CONSOLE_DUAL_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1 )
 
 /* Uncomment to enable raw character echo for IO testing */
-#define COMMAND_CONSOLE_DUAL_ECHO_ENABLE
+// #define COMMAND_CONSOLE_DUAL_ECHO_ENABLE  // Temporarily disabled for debugging
 
 #define COMMAND_CONSOLE_DUAL_WAIT_TIME	pdMS_TO_TICKS( 100 ) // ms
 
