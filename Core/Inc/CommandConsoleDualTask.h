@@ -18,7 +18,7 @@
 #include "FreeRTOS_CLI.h"
 
 /* Default task config */
-#define COMMAND_CONSOLE_DUAL_TASK_STACK_SIZE	1024  /* Increased from 256 to handle CLI commands */
+#define COMMAND_CONSOLE_DUAL_TASK_STACK_SIZE	2048  /* Increased from 1024 to eliminate warnings */
 #define COMMAND_CONSOLE_DUAL_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1 )
 
 /* Uncomment to enable raw character echo for IO testing */

@@ -67,8 +67,8 @@
 #define configCPU_CLOCK_HZ                       ( SystemCoreClock )
 #define configTICK_RATE_HZ                       ((TickType_t)1000)
 #define configMAX_PRIORITIES                     ( 7 )
-#define configMINIMAL_STACK_SIZE                 ((uint16_t)128)
-#define configTOTAL_HEAP_SIZE                    ((size_t)65536)  /* Increased from 32KB to 64KB for better headroom */
+#define configMINIMAL_STACK_SIZE                 ((uint16_t)1024)  /* Increased from 512 to eliminate IDLE task warnings */
+#define configTOTAL_HEAP_SIZE                    ((size_t)131072)  /* Increased from 64KB to 128KB for advanced optimization */
 #define configMAX_TASK_NAME_LEN                  ( 16 )
 #define configGENERATE_RUN_TIME_STATS            1
 #define configUSE_TRACE_FACILITY                 1

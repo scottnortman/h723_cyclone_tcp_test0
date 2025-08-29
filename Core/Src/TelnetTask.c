@@ -18,7 +18,7 @@
 #include "SerialTask.h" //debug
 
 #define TELNET_PORT              23
-#define TELNET_TASK_STACK_SIZE   512
+#define TELNET_TASK_STACK_SIZE   1024  /* Increased from 512 to eliminate warnings */
 #define CLI_BUFFER_SIZE          512  /* Increased to match CLI output buffer size */
 
 // Telnet IAC command and option codes

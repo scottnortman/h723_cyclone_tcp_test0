@@ -580,14 +580,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   taskParams = OS_TASK_DEFAULT_PARAMS;
-  taskParams.stackSize = 128;
+  taskParams.stackSize = 1024;  /* Increased from 512 to eliminate WARNING status */
   taskParams.priority = OS_TASK_PRIORITY_NORMAL+1;
 
   taskId = osCreateTask( "GRN", pvGreenLEDTask, NULL, &taskParams);
   //taskId = osCreateTask( "RED", pvRedLEDTask, NULL, &taskParams );
 
   BaseType_t ret;
-  ret = xTaskCreate( pvRedLEDTask, "RED", configMINIMAL_STACK_SIZE, NULL, 4, NULL );
+  ret = xTaskCreate( pvRedLEDTask, "RED", 1024, NULL, 4, NULL );  /* Increased from 512 to eliminate warnings */
   configASSERT(ret == pdPASS);
 
   //xUARTCommandConsoleStart( configUART_COMMAND_CONSOLE_STACK, 2 );
@@ -611,7 +611,7 @@ int main(void)
 							xTelnetTaskGetTxStreamHandle() );
 
 
-  vRegisterSampleCLICommands();
+  vRegisterSampleCLICommands();\n  \n  /* Register custom CLI commands */\n  vRegisterStackMonitorCLICommands();\n  uavcanCliRegisterCommands();
 
 
 

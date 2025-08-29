@@ -143,9 +143,13 @@ static BaseType_t prvStackInfoCommand(char *pcWriteBuffer, size_t xWriteBufferLe
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Telnet") != NULL) {
                 uxTotal = 1024 * sizeof(StackType_t);
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Serial") != NULL) {
-                uxTotal = 512 * sizeof(StackType_t);
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Cmd") != NULL) {
-                uxTotal = 1024 * sizeof(StackType_t);
+                uxTotal = 2048 * sizeof(StackType_t);  /* Updated from 1024 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "RED") != NULL) {
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "GRN") != NULL) {
+                uxTotal = 512 * sizeof(StackType_t);
             }
             
             UBaseType_t uxUsed = uxTotal - uxFree;
@@ -239,9 +243,13 @@ static BaseType_t prvStackCheckCommand(char *pcWriteBuffer, size_t xWriteBufferL
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Telnet") != NULL) {
                 uxTotal = 1024 * sizeof(StackType_t);
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Serial") != NULL) {
-                uxTotal = 512 * sizeof(StackType_t);
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Cmd") != NULL) {
-                uxTotal = 1024 * sizeof(StackType_t);
+                uxTotal = 2048 * sizeof(StackType_t);  /* Updated from 1024 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "RED") != NULL) {
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "GRN") != NULL) {
+                uxTotal = 512 * sizeof(StackType_t);
             }
             
             UBaseType_t uxUsed = uxTotal - uxFree;
@@ -350,9 +358,13 @@ static BaseType_t prvStackWatchCommand(char *pcWriteBuffer, size_t xWriteBufferL
             } else if (strstr(xTaskDetails.pcTaskName, "Telnet") != NULL) {
                 uxTotal = 1024 * sizeof(StackType_t);
             } else if (strstr(xTaskDetails.pcTaskName, "Serial") != NULL) {
-                uxTotal = 512 * sizeof(StackType_t);
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
             } else if (strstr(xTaskDetails.pcTaskName, "Cmd") != NULL) {
-                uxTotal = 1024 * sizeof(StackType_t);
+                uxTotal = 2048 * sizeof(StackType_t);  /* Updated from 1024 */
+            } else if (strstr(xTaskDetails.pcTaskName, "RED") != NULL) {
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
+            } else if (strstr(xTaskDetails.pcTaskName, "GRN") != NULL) {
+                uxTotal = 512 * sizeof(StackType_t);
             }
             
             UBaseType_t uxUsed = uxTotal - uxFree;
@@ -476,9 +488,13 @@ static BaseType_t prvMemoryInfoCommand(char *pcWriteBuffer, size_t xWriteBufferL
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Telnet") != NULL) {
                 uxTotal = 1024 * sizeof(StackType_t);
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Serial") != NULL) {
-                uxTotal = 512 * sizeof(StackType_t);
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
             } else if (strstr(pxTaskStatusArray[x].pcTaskName, "Cmd") != NULL) {
-                uxTotal = 1024 * sizeof(StackType_t);
+                uxTotal = 2048 * sizeof(StackType_t);  /* Updated from 1024 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "RED") != NULL) {
+                uxTotal = 1024 * sizeof(StackType_t);  /* Updated from 512 */
+            } else if (strstr(pxTaskStatusArray[x].pcTaskName, "GRN") != NULL) {
+                uxTotal = 512 * sizeof(StackType_t);
             }
             
             UBaseType_t uxUsed = uxTotal - uxFree;
