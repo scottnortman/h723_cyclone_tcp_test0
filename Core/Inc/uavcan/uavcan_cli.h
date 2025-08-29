@@ -82,6 +82,17 @@ BaseType_t uavcanCliSimpleVerifyCommand(char* pcWriteBuffer,
                                        size_t xWriteBufferLen, 
                                        const char* pcCommandString);
 
+/**
+ * @brief UAVCAN CLI buffer test command handler
+ * @param pcWriteBuffer Buffer to write response to
+ * @param xWriteBufferLen Size of write buffer
+ * @param pcCommandString Command string
+ * @retval BaseType_t Command result
+ */
+BaseType_t uavcanCliBufferTestCommand(char* pcWriteBuffer, 
+                                     size_t xWriteBufferLen, 
+                                     const char* pcCommandString);
+
 #ifdef __cplusplus
 }
 #endif

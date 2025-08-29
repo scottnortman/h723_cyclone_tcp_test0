@@ -135,7 +135,7 @@ header file. */
 #define configASSERT( x ) 					if ((x) == 0) {taskDISABLE_INTERRUPTS(); for( ;; );}
 
 #define configCOMMAND_INT_MAX_INPUT_SIZE	128U
-#define configCOMMAND_INT_MAX_OUTPUT_SIZE  	128U
+#define configCOMMAND_INT_MAX_OUTPUT_SIZE  	512U  /* Increased from 128U to fix CLI truncation */
 //#define configUART_COMMAND_CONSOLE_STACK  	256U
 
 /* USER CODE END 1 */
